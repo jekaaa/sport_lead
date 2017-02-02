@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{request.locale_name}}">
+ 	<head>
+  		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+  		<title>Главная</title>
+  		<link href="{{request.static_url('sport:static/newTheme.css')}}" rel="stylesheet">
+        <link href="../static/icon.png" rel="shortcut icon" type="image/jpeg">
+ 	</head>
+    <body>
+        <div class="content">
+            <div class="header">
+                <h1>SportLead</h1>
+                {% block header %}
+                {% endblock %}
+                <a href="/logout">
+                    <input name="" class="exit" type="submit" value="">
+                </a>
+            </div>
+            {% block content %}
+            {% endblock %}
+        </div>
+
+    </body>
+</html>

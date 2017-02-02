@@ -1,0 +1,29 @@
+{% extends "newDefault.jinja2" %}
+{% block content %}
+    <a href="/all_tournaments">
+        <div class="block">
+            <div class="name">ВСЕ МЕРОПРИЯТИЯ</div>
+        </div>
+    </a>
+
+    <a href="/id">
+        <div class="block">
+            <div class="name">МОИ МЕРОПРИЯТИЯ</div>
+        </div>
+    </a>
+
+    <a href="/favorites_tournaments">
+        <div class="block">
+            <div class="name">ИЗБРАННОЕ</div>
+        </div>
+    </a>
+
+    <a href="/new_tournament">
+        <div class="block">
+            <div class="name">СОЗДАТЬ МЕРОПРИЯТИЕ</div>
+        </div>
+    </a>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="../static/menu.js"></script>
+
+{% endblock %}

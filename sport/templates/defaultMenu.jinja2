@@ -1,0 +1,213 @@
+{% extends "default.jinja2" %}
+{% block title%}{% block title2 %}{% endblock %}{% endblock %}
+{% block header %}{% block header2 %}{% endblock %}{% endblock %}
+{% block content %}
+    <!-- <div class="left">
+       <form>
+            <button name="sport" type="button">Вид спорта</button>
+            <div name="leftList">
+                    <p><label>Бадминтон<input type="checkbox" name="badminton" value="Бадминтон"></label></p>
+                    <p><label>Баскетбол<input type="checkbox" name="basketball" value="Баскетбол"></label></p>
+                    <p><label>Бег<input type="checkbox" name="run" value="Бег"></label></p>
+                    <p><label>Лыжи<input type="checkbox" name="ski" value="Лыжи"></label></p>
+                    <p><label>Велоспорт <input type="checkbox" name="cycle_racing" value="Велоспорт"></label></p>
+                    <p><label>Волейбол<input type="checkbox" name="volleyball" value="Волейбол"></label></p>
+                    <p><label>Гандбол<input type="checkbox" name="handball" value="Гандбол"></label></p>
+
+                    <p><label>Гребля<input type="checkbox" name="rowing" value="Гребля"></label></p>
+
+                    <p><label>Единоборства<input type="checkbox" name="fighting" value="Единоборства"></label></p>
+                    <p><label>Конькобежный спорт<input type="checkbox" name="skating" value="Конькобежный спорт"></label></p>
+
+                    <p><label>Теннис<input type="checkbox" name="tennis" value="Теннис"></label></p>
+
+                    <p><label>Настольный теннис<input type="checkbox" name="table_tennis" value="Настольный теннис"></label></p>
+
+                    <p><label>Плавание<input type="checkbox" name="swimming" value="Плавание"></label></p>
+
+                    <p><label>Сноуборд<input type="checkbox" name="snowboard" value="Сноуборд"></label></p>
+
+                    <p><label>Футбол<input type="checkbox" name="football" value="Футбол"></label></p>
+
+                    <p><label>Хоккей<input type="checkbox" name="hockey" value="Хоккей"></label></p>
+
+                    <p><label>Другое<input type="checkbox" name="other" value="Другое"></label></p>
+
+            </div>
+            <input name="nameFilter" placeholder="Название"/>
+            <input name="cityFilter" placeholder="Город"/>
+            <input name="dateFilter" placeholder="Дата"/>
+            <button name="sub" type="submit">Выбрать</button>
+        </form>
+    </div>-->
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <ul class="collapsible z-depth-0" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons green-text">search</i>Поиск мероприятия</div>
+                    <div class="collapsible-body">
+                        <div class="row">
+                            <form method="post" class="col s12 ">
+                                <div class="row">
+                                    <div class="input-field col offset-l1 offset-m1 l10 m10 s12">
+                                        <input id="nameFilter" name="nameFilter" type="text" class="validate" />
+                                        <label for="nameFilter">Название меропрития</label>
+                                    </div>
+
+                                    <div class="input-field col offset-l1 offset-m1 l10 m10 s12">
+                                        <input id="cityFilter" name="cityFilter" type="text" class="validate" />
+                                        <label for="cityFilter">Город проведения</label>
+                                    </div>
+
+                                    <div class="input-field col offset-l1 offset-m1 l10 m10 s12">
+                                        <input id="dateFilter" name="dateFilter" type="date" class="validate" />
+                                        <label class="active" for="dateFilter">Дата начала</label>
+                                    </div>
+
+                                    <div class="input-field col offset-l1 offset-m1 hide-on-small-only l2 m2 ">
+                                        <input id="badminton" type="checkbox" name="badminton" value="Бадминтон"/>
+                                        <label for="badminton">Бадминтон</label>
+                                        <input id="basketball" type="checkbox" name="basketball" value="Баскетбол"/>
+                                        <label for="basketball">Баскетбол</label>
+                                        <input id="run" type="checkbox" name="run" value="Бег"/>
+                                        <label for="run">Бег</label>
+                                        <input id="swimming" type="checkbox" name="swimming" value="Плавание"/>
+                                        <label for="swimming">Плавание</label>
+                                        <input id="ski" type="checkbox" name="ski" value="Лыжи"/>
+                                        <label for="ski">Лыжи</label>
+                                        <input id="hockey" type="checkbox" name="hockey" value="Хоккей"/>
+                                        <label for="hockey">Хоккей</label>
+                                    </div>
+
+                                    <div class="input-field col offset-l1 offset-m1 hide-on-small-only offset-s1 l2 m2 ">
+                                        <input id="cycle_racing" type="checkbox" name="cycle_racing" value="Велоспорт"/>
+                                        <label for="cycle_racing">Велоспорт</label>
+                                        <input id="volleyball" type="checkbox" name="volleyball" value="Волейбол"/>
+                                        <label for="volleyball">Волейбол</label>
+                                        <input id="handball" type="checkbox" name="handball" value="Гандбол"/>
+                                        <label for="handball">Гандбол</label>
+                                        <input id="rowing" type="checkbox" name="rowing" value="Гребля"/>
+                                        <label for="rowing">Гребля</label>
+                                        <input id="snowboard" type="checkbox" name="snowboard" value="Сноуборд"/>
+                                        <label for="snowboard">Сноуборд</label>
+                                        <input id="other" type="checkbox" name="other" value="Другое"/>
+                                        <label for="other">Другое</label>
+                                    </div>
+
+                                    <div class="input-field col offset-l1 offset-m1 hide-on-small-only l3 m3">
+                                        <input id="fighting" type="checkbox" name="fighting" value="Единоборства"/>
+                                        <label for="fighting">Единоборства</label>
+                                        <input id="skating" type="checkbox" name="skating" value="Конькобежный спорт"/>
+                                        <label for="skating">Конькобежный спорт</label>
+                                        <input id="tennis" type="checkbox" name="tennis" value="Теннис"/>
+                                        <label for="tennis">Теннис</label>
+                                        <input id="table_tennis" type="checkbox" name="table_tennis" value="Настольный теннис"/>
+                                        <label for="table_tennis">Настольный теннис</label>
+                                        <input id="football" type="checkbox" name="football" value="Футбол"/>
+                                        <label for="football">Футбол</label>
+                                    </div>
+
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="badminton" type="checkbox" name="badminton" value="Бадминтон" class="filled-in"/>
+                                        <label for="badminton">Бадминтон</label>
+                                    </div>
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="basketball" type="checkbox" name="basketball" value="Баскетбол"/>
+                                        <label for="basketball">Баскетбол</label>
+                                    </div>
+                                    <div class=" input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="run" type="checkbox" name="run" value="Бег"/>
+                                        <label for="run">Бег</label>
+                                    </div>
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="swimming" type="checkbox" name="swimming" value="Плавание"/>
+                                        <label for="swimming">Плавание</label>
+                                    </div>
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="ski" type="checkbox" name="ski" value="Лыжи"/>
+                                        <label for="ski">Лыжи</label>
+                                    </div>
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="hockey" type="checkbox" name="hockey" value="Хоккей"/>
+                                        <label for="hockey">Хоккей</label>
+                                    </div>
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="cycle_racing" type="checkbox" name="cycle_racing" value="Велоспорт"/>
+                                        <label for="cycle_racing">Велоспорт</label>
+                                    </div>
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="volleyball" type="checkbox" name="volleyball" value="Волейбол"/>
+                                        <label for="volleyball">Волейбол</label>
+                                    </div>
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="handball" type="checkbox" name="handball" value="Гандбол"/>
+                                        <label for="handball">Гандбол</label>
+                                    </div>
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="rowing" type="checkbox" name="rowing" value="Гребля"/>
+                                        <label for="rowing">Гребля</label>
+                                    </div>
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="snowboard" type="checkbox" name="snowboard" value="Сноуборд"/>
+                                        <label for="snowboard">Сноуборд</label>
+                                    </div>
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="other" type="checkbox" name="other" value="Другое"/>
+                                        <label for="other">Другое</label>
+                                    </div>
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="fighting" type="checkbox" name="fighting" value="Единоборства"/>
+                                        <label for="fighting">Единоборства</label>
+                                    </div>
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="skating" type="checkbox" name="skating" value="Конькобежный спорт"/>
+                                        <label for="skating">Конькобежный спорт</label>
+                                    </div>
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="tennis" type="checkbox" name="tennis" value="Теннис"/>
+                                        <label for="tennis">Теннис</label>
+                                    </div>
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="table_tennis" type="checkbox" name="table_tennis" value="Настольный теннис"/>
+                                        <label for="table_tennis">Настольный теннис</label>
+                                    </div>
+                                    <div class="input-field col offset-s2 s8 hide-on-med-and-up">
+                                        <input id="football" type="checkbox" name="football" value="Футбол"/>
+                                        <label for="football">Футбол</label>
+                                    </div>
+
+                                    <div class="input-field col l12 m12 s12 ">
+                                        <p></p>
+                                    </div>
+
+                                    <div class="input-field col offset-l5 l4 offset-m4 m4 offset-s3 s6">
+                                       <button class="btn waves-effect waves-light green" type="submit" name="sub">поиск
+                                           <i class="material-icons right">search</i>
+                                       </button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                {% block up %}{% endblock %}
+            </ul>
+            {% if listFavorites or listContent %}
+            <ul class="collection ">
+                {% if message %}
+                    <li class="collection-header avatar">
+                        <h6 class="center">{{ message }}</h6>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="collection-header avatar">
+                        <p class="center">{{ messageError }}</p>
+                    </li>
+                {% endif %}
+                {% block center%}{% endblock %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+    <!--<script src="../static/LeftList.js"></script>-->
+{% endblock %}

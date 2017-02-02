@@ -1,0 +1,107 @@
+body{
+	background:  white;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+
+	overflow: auto;
+	height: 100%;
+}
+
+.z{
+	
+	font-family: "fantasy", Sans-Serif;
+	font-size: 40px;
+	width: 50%;
+	height: 80px;
+
+	margin-bottom: 20px;
+	margin-left: 25%;
+	padding-top:5px;
+}
+
+.z b{
+	margin-left: 25%;
+	padding: 10px;
+}
+
+.s{
+	font-family: "fantasy", Sans-Serif;
+	font-size: 12px;
+	color: white;
+	background: #F3AE0F;
+	padding: 3px;
+	border-radius: 5px;
+
+}
+.chislo{
+	margin-left: 35%;
+	background-color: white;
+	text-align: center;
+	width:29%;
+	font-family: "fantasy", Sans-Serif;
+	font-size: 20px;
+	padding:5px;
+	margin-bottom: 40px;
+}
+.rnd{
+	background-color: #E4E3E2;
+	font-family: "fantasy", Sans-Serif;
+	font-size: 25px;
+	width: 50%;
+	height: 50%;
+	margin-left: 25%;
+	margin-top: 40px;
+	margin-bottom: 40px;
+
+	border-radius: 5px;
+	
+}
+
+.rnd p{
+	margin-left: 17%;
+	margin-top: 10px;
+	padding: 10px;
+	font-size: 14px;
+}
+
+.rnd b{
+	margin-left: 25%;
+	padding: 10px;
+
+}
+
+.rnd input{
+	width: 50px;
+	padding: 5px;
+	border-radius: 5px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.rnd button{
+	font-size: 16px;
+	width: 30%;
+	margin-left: 35%;
+	margin-bottom: 20px;
+	display: inline-block;
+  	color: white;
+	text-decoration: none;
+	padding: 8px;
+	outline: none;
+	border-width: 2px 0;
+	border-style: solid none;
+	border-color: #FDBE33 #000 #D77206;
+	border-radius: 6px;
+	background: linear-gradient(#F3AE0F, #E38916) #E38916;
+	transition: 0.2s;
+}
+.rnd button:hover{
+	cursor: pointer;
+	background: linear-gradient(#f5ae00, #f59500) #f5ae00;
+}
+
+.rnd button:active{
+	background: linear-gradient(#f59500, #f5ae00) #f59500;
+}

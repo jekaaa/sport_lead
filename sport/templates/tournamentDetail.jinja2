@@ -1,0 +1,401 @@
+{% extends "default.jinja2" %}
+{% block title %}{{ event.name }}{% endblock %}
+{% block header %}
+    <li><a class="waves-effect waves-light hide-on-small-only " href="/all_tournaments">Все мероприятия</a></li>
+    <li><a class="waves-effect waves-light hide-on-small-only" href="/my_tournaments">Мои мероприятия</a></li>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col l12 s12 m12">
+          <ul class="tabs">
+              {% if message %}
+                  <li class="tab col l3 m3 s3 "><a class="black-text" href="#1">Основная информация</a></li>
+                  {% if not tableP %}
+                      <li class="tab col l3 m3 s3 "><a class="black-text active" href="#2">Расписание и результаты</a></li>
+                  {% endif %}
+              {% else %}
+                  <li class="tab col l3 m3 s3 "><a class="active black-text" href="#1">Основная информация</a></li>
+                  {% if not tableP %}
+                      <li class="tab col l3 m3 s3 "><a class="black-text" href="#2">Расписание и результаты</a></li>
+                  {% endif %}
+              {% endif %}
+              {% if not race %}
+                  <li class="tab col l3 m3 s3"><a class="black-text" href="#3">Итоговая таблица</a></li>
+              {% endif %}
+              <li class="tab col l3 m3 s3"><a class="black-text" href="#4">Участники</a></li>
+          </ul>
+        </div>
+        <div id="1" class="col m12 l12 s12">
+            <ul class="collection">
+                <li class="collection-item center">
+                    {% if event.city != "" %}
+                        {{ event.name }}, {{ event.city }}
+                    {% else %}
+                        {{ event.name }}
+                    {% endif %}
+                </li>
+                {% if root %}
+                    <li class="collection-item center">
+                        <form method="post">
+                             <button class="btn-flat green-text" name="delete" type="submit">Удалить мероприятие<i class="material-icons right">delete_forever</i></button>
+                        </form>
+                    </li>
+                {% else %}
+                <li class="collection-item center">
+                    <form method="post">
+                        {% if favorites %}
+                            <button class="btn-flat green-text" name="favorites" type="submit">Удалить из избранного<i class="material-icons right">star</i></button>
+                        {% else %}
+                            <button class="btn-flat green-text" name="favorites" type="submit">Добавить в избранное<i class="material-icons right">star_border</i></button>
+                        {% endif %}
+                    </form>
+                </li>
+                {% endif %}
+
+                {% if event.building %}
+                    <li class="collection-item">
+                    {% if event.address %}
+                        Место проведения мероприятия: {{ event.building }}, адрес: {{ event.address }}
+                    {% else %}
+                        Место проведения мероприятия: {{ event.building }}, адрес: {{ event.address }}
+                    {% endif %}
+                    </li>
+                {% else %}
+                    {% if event.address %}
+                        Адрес проведения мероприятия: {{ event.address }}
+                    {% endif %}
+                {% endif %}
+
+                {% if event.description == ""%}
+                    <li class="collection-item center">
+                    У мероприятия нет описания.
+                {% else %}
+                    <li class="collection-item">
+                    {{ event.description }}
+                {% endif %}
+                </li>
+            </ul>
+        </div>
+        {% if not tableP %}
+        <div id="2" class="col m12 l12 s12">
+            {% if root %}
+                {% if race %}
+                    <ul class="collapsible z-depth-0" data-collapsible="accordion">
+                    <li>
+                        {% if message %}
+                        <div class="collapsible-header active"><i class="material-icons green-text">add</i>Добавить результат</div>
+                        {% else %}
+                            <div class="collapsible-header "><i class="material-icons green-text">add</i>Добавить результат</div>
+                        {% endif %}
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <form method="post" class="col s12 ">
+                                    <div class="row">
+                                        <div class="input-field offset-l1 offset-m1 col l5 m5 s12 ">
+                                            <input id="player" name="player" class="validate" type="text"/>
+                                            <label for="player">Имя участника</label>
+                                        </div>
+
+                                        <div class="input-field col l5 m5 s12 ">
+                                            <input id="time" name="time" class="validate" type="text"/>
+                                            <label for="time">Время участника</label>
+                                        </div>
+
+                                         <div class="input-field col l12 m12 s12 center-align">{{ message }}
+                                         </div>
+
+                                        <div class="input-field col offset-l5 l4 offset-m4 m4 offset-s3 s6">
+                                           <button class="btn waves-effect waves-light green" type="submit" name="save">готово</button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    </ul>
+                {% else %}
+                <ul class="collapsible z-depth-0" data-collapsible="accordion">
+                    <li>
+                        {% if message %}
+                        <div class="collapsible-header active"><i class="material-icons green-text">add</i>Добавить матч</div>
+                        {% else %}
+                            <div class="collapsible-header "><i class="material-icons green-text">add</i>Добавить матч</div>
+                        {% endif %}
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <form method="post" class="col s12 ">
+                                    <div class="row">
+                                        <div class="input-field offset-l1 offset-m1 col l5 m5 s12 ">
+                                            <input id="player1" name="player1" class="validate" type="text"/>
+                                            <label for="player1">Название первой команды</label>
+                                        </div>
+
+                                        <div class="input-field col l5 m5 s12 ">
+                                            <input id="player2" name="player2" class="validate" type="text"/>
+                                            <label for="player2">Название второй команды</label>
+                                        </div>
+
+                                        <div class="input-field offset-l1 offset-m1  col l5 m5 s12 ">
+                                            <input id="score1" name="score1" class="validate" type="text"/>
+                                            <label for="score1" class="active" >Очки первой команды</label>
+                                        </div>
+
+                                        <div class="input-field col l5 m5 s12 ">
+                                            <input id="score2" name="score2" class="validate" type="text"/>
+                                            <label for="score2" class="active" >Очки второй команды</label>
+                                        </div>
+
+                                        <div class="input-field offset-l1 offset-m1 col l10 m10 s12 ">
+                                            <input id="date" name="date" class="validate" type="date"/>
+                                            <label for="date" class="active">Дата начала</label>
+                                        </div>
+
+                                        <div class="input-field col l12 m12 s12 center-align">
+                                            {{ message }}
+                                         </div>
+
+                                        <div class="input-field col offset-l5 l4 offset-m4 m4 offset-s3 s6">
+                                           <button class="btn waves-effect waves-light green" type="submit" name="save">готово</button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                {% endif %}
+            {% endif %}
+                <ul class="collection" >
+                    <li class="collection-item center-align">Результаты</li>
+                    <li class="collection-item " style="padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px">
+                        {% if games %}
+                        <table class="striped" >
+                            <tbody>
+                            {% for g in games %}
+                               <tr ><td >{{ g.date }}</td><td >{{ g.playerOne }}</td><td>{{ g.playerOneScore }} : {{ g.playerTwoScore }}</td><td>{{ g.playerTwo }}</td></tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                            {% if race %}
+                                 <table class="striped">
+                                    <tbody>
+                                    {% for e in race %}
+                                        <tr><td>{{ e.position }}</td><td>{{ e.name }}</td><td>{{ e.score }}</td></tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% else %}
+                                <p class="center">Пока матчей не сыграно.</p>
+                            {% endif %}
+                        {% endif %}
+                    </li>
+                </ul>
+        </div>
+        {% endif %}
+        <div id="3" class="col m12 l12 s12">
+            {% if groupList %}
+                {% for group in groupList %}
+                    <ul class="collection">
+                        <li class="collection-item center" >Группа {{ group[0].nameGroup }}</li>
+                        <li class="collection-item" style="padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px">
+                            <table class="striped">
+                                <thead>
+                                    <tr>
+                                        <th >№</th>
+                                        <th >Название команды</th>
+                                        <th >Игры</th>
+                                        <th>Победы</th>
+                                        <th>Ничьи</th>
+                                        <th>Поражения</th>
+                                        <th>Голы</th>
+                                        <th>Очки</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                {% for e in group %}
+                                    <tr >
+                                        <td>{{ e.position }}</td>
+                                        <td>{{ e.name }}</td>
+                                        <td>{{ e.games }}</td>
+                                        <td>{{ e.wins }}</td>
+                                        <td>{{ e.draws }}</td>
+                                        <td>{{ e.lose }}</td>
+                                        <td>{{ e.goalsScored }} - {{ e.goalsAgainst }}</td>
+                                        <td>{{ e.score }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </li>
+                    </ul>
+                {% endfor %}
+            {% endif %}
+            {% if table %}
+             <ul class="collection">
+                <li class="collection-item" style="padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px">
+                    <table class="striped">
+                        <thead>
+                            <tr><th>№</th><th>Название команды</th><th>Игры</th><th>Победы</th><th>Ничьи</th><th>Поражения</th><th>Голы</th><th>Очки</th></tr>
+                        </thead>
+                        <tbody>
+                        {% for e in table %}
+                            <tr>
+                                <td>{{ e.position }}</td>
+                                <td>{{ e.name }}</td>
+                                <td>{{ e.games }}</td>
+                                <td>{{ e.wins }}</td>
+                                <td>{{ e.draws }}</td>
+                                <td>{{ e.lose }}</td>
+                                <td>{{ e.goalsScored }} - {{ e.goalsAgainst }}</td>
+                                <td>{{ e.score }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </li>
+             </ul>
+            {% endif %}
+             {% if tableP %}
+                {% if root %}
+                    <ul class="collapsible z-depth-0" data-collapsible="accordion">
+                    <li>
+                        {% if message %}
+                        <div class="collapsible-header active"><i class="material-icons green-text">add</i>Добавить матч</div>
+                        {% else %}
+                            <div class="collapsible-header "><i class="material-icons green-text">add</i>Добавить матч</div>
+                        {% endif %}
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <form method="post" class="col s12 ">
+                                    <div class="row">
+                                        <div class="input-field offset-l1 offset-m1 col l5 m5 s12 ">
+                                            <input id="player1" name="player1" class="validate" type="text"/>
+                                            <label for="player1">Название первой команды</label>
+                                        </div>
+
+                                        <div class="input-field col l5 m5 s12 ">
+                                            <input id="player2" name="player2" class="validate" type="text"/>
+                                            <label for="player2">Название второй команды</label>
+                                        </div>
+
+                                        <div class="input-field offset-l1 offset-m1  col l5 m5 s12 ">
+                                            <input id="score1" name="score1" class="validate" type="text"/>
+                                            <label for="score1" class="active" >Очки первой команды</label>
+                                        </div>
+
+                                        <div class="input-field col l5 m5 s12 ">
+                                            <input id="score2" name="score2" class="validate" type="text"/>
+                                            <label for="score2" class="active" >Очки второй команды</label>
+                                        </div>
+
+                                        <div class="input-field offset-l1 offset-m1 col l10 m10 s12 ">
+                                            <input id="date" name="date" class="validate" type="date"/>
+                                            <label for="date" class="active">Дата начала</label>
+                                        </div>
+
+                                        <p class="center">{{ message }}</p>
+
+                                        <div class="input-field col offset-l5 l4 offset-m4 m4 offset-s3 s6">
+                                           <button class="btn waves-effect waves-light green" type="submit" name="save">готово</button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                {% endif %}
+                {% for stage in tableP %}
+                    {% if stage %}
+                        <ul class="collection">
+                            {% if stage[0].stage == 1 %}
+                                <li class="collection-item center">Финал</li>
+                            {% else %}
+                                {% if stage[0].stage == 2 %}
+                                    <li class="collection-item center">Полуфинал</li>
+                                {% else  %}
+                                    <li class="collection-item center">1/{{ stage[0].stage }}</li>
+                                {% endif %}
+                            {% endif %}
+                            <li class="collection-item" style="padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px">
+                                <table class="striped">
+                                    {% for e in stage %}
+                                        {% if e.playerOneScore == None and e.playerTwoScore == None%}
+                                             <tr><td class="two">{{ e.date }}</td><td class="one">{{ e.playerOne }}</td><td class="two">- : -</td><td class="one">{{ e.playerTwo }}</td></tr>
+                                        {% else %}
+                                             <tr><td class="two">{{ e.date }}</td><td class="one">{{ e.playerOne }}</td><td class="two">{{ e.playerOneScore }} : {{ e.playerTwoScore }}</td><td class="one">{{ e.playerTwo }}</td></tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </table>
+                            </li>
+                        </ul>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div id="4" class="col m12 l12 s12">
+            {% if root %}
+                <ul class="collapsible z-depth-0" data-collapsible="accordion">
+                    <li>
+                        {% if message %}
+                        <div class="collapsible-header active"><i class="material-icons green-text">add</i>Добавить участника</div>
+                        {% else %}
+                            <div class="collapsible-header "><i class="material-icons green-text">add</i>Добавить участника</div>
+                        {% endif %}
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <form method="post" class="col s12 ">
+                                    <div class="row">
+                                        <div class="input-field offset-l1 offset-m1 col l5 m5 s12 ">
+                                            <input id="middle_name" name="middle_name" class="validate" type="text"/>
+                                            <label for="middle_name">Фамилия участника</label>
+                                        </div>
+
+                                        <div class="input-field col l5 m5 s12 ">
+                                            <input id="first_name" name="first_name" class="validate" type="text"/>
+                                            <label for="first_name">Имя участника</label>
+                                        </div>
+
+                                        <div class="input-field offset-l1 offset-m1 col l5 m5 s12 ">
+                                            <input id="last_name" name="last_name" class="validate" type="text"/>
+                                            <label for="last_name">Отчество участника</label>
+                                        </div>
+
+                                        <div class="input-field col l5 m5 s12 ">
+                                            <input id="age" name="age" class="validate" type="text"/>
+                                            <label for="age">Возраст участника</label>
+                                        </div>
+
+                                        <div class="input-field offset-l1 offset-m1 col l5 m5 s12 ">
+                                            <input id="weight" name="weight" class="validate" type="text"/>
+                                            <label for="weight">Вес участника</label>
+                                        </div>
+
+                                        <div class="input-field col l5 m5 s12 ">
+                                            <input id="team" name="team" class="validate" type="text"/>
+                                            <label for="team">Команда участника</label>
+                                        </div>
+
+                                         <div class="input-field col l12 m12 s12 center-align">{{ message }}
+                                         </div>
+
+                                        <div class="input-field col offset-l5 l4 offset-m4 m4 offset-s3 s6">
+                                           <button class="btn waves-effect waves-light green" type="submit" name="settings">готово</button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            {% else %}
+            {% endif %}
+        </div>
+    </div>
+    <script src="../static/scripts/tab.js"></script>
+{% endblock %}

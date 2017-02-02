@@ -1,0 +1,136 @@
+{% extends "default.jinja2" %}
+{% block title %}Турнир{% endblock %}
+{% block header %}
+    <li><a class="waves-effect waves-light hide-on-small-only " href="/all_tournaments">Все мероприятия</a></li>
+    <li><a class="waves-effect waves-light hide-on-small-only" href="/my_tournaments">Мои мероприятия</a></li>
+{% endblock %}
+<!--
+nameTounament=Add&city=ekb&number=3&date=&description=&kind=Футбол&type=Круговой+турнир&input0=a&input1=b&input2=c
+     logout
+-->
+{% block content %}
+    <div class="row">
+        <form method="post" class="col s12 card-panel ">
+            <div class="row">
+                <div class="input-field col l12 m12 s12">
+                    <input id="name" name="nameTournament" type="text" class="invalid" />
+                    <label for="name">Название меропрития</label>
+                </div>
+
+                <div class="input-field col l4 m12 s12">
+                    <select name="kind">
+                        <option data-icon="../static/icon/Бадминтон.png" class="circle" >Бадминтон</option>
+                        <option data-icon="../static/icon/Армспорт.png" class="circle">Армспорт</option>
+                        <option data-icon="../static/icon/Баскетбол.png" class="circle">Баскетбол</option>
+                        <option data-icon="../static/icon/Бег.png" class="circle">Бег</option>
+                        <option data-icon="../static/icon/Лыжи.png" class="circle">Лыжи</option>
+                        <option data-icon="../static/icon/Велоспорт.png" class="circle">Велоспорт</option>
+                        <option data-icon="../static/icon/Волейбол.png" class="circle">Волейбол</option>
+                        <option data-icon="../static/icon/Гандбол.png" class="circle">Гандбол</option>
+                        <option data-icon="../static/icon/Гребля.png" class="circle">Гребля</option>
+                        <option data-icon="../static/icon/Единоборства.png" class="circle">Единоборсва</option>
+                        <option data-icon="../static/icon/Конькобежный спорт.png" class="circle">Конькобежный спорт</option>
+                        <option data-icon="../static/icon/Теннис.png" class="circle">Теннис</option>
+                        <option data-icon="../static/icon/Настольный теннис.png" class="circle">Настольный теннис</option>
+                        <option data-icon="../static/icon/Плавание.png" class="circle">Плавание</option>
+                        <option data-icon="../static/icon/Лыжи.png" class="circle">Лыжи</option>
+                        <option data-icon="../static/icon/Сноуборд.png" class="circle">Сноуборд</option>
+                        <option data-icon="../static/icon/Футбол.png" class="circle">Футбол</option>
+                        <option data-icon="../static/icon/Хоккей.png" class="circle">Хоккей</option>
+                        <option data-icon="../static/icon/Другое.png" class="circle">Другое</option>
+                    </select>
+                    <label>Вид спорта</label>
+                </div>
+
+                <div id="type" class="input-field col l4 m12 s12" style="display:none">
+                    <select name="type" >
+                        <option>Круговой турнир</option>
+                        <option>Групповой турнир с плей-офф</option>
+                        <option>Групповой турнир с плей-офф (случайное распределение)</option>
+                        <option>Плей-офф</option>
+                        <option>Плей-офф (случайное распределение)</option>
+                    </select>
+                </div>
+
+                <div id="typePL" class="input-field col l4 m12 s12" >
+                    <select name="typePL" >
+                        <option>Плей-офф</option>
+                        <option>Плей-офф (случайное распределение)</option>
+                    </select>
+                </div>
+
+                <div id="group_block" class="input-field col l4 m12 s12" style="display: none">
+                    <input id="group" name="group" type="text" class="invalid" />
+                    <label for="group">Количество групп</label>
+                </div>
+
+                <div class="input-field col l4 m12 s12" style="display: none">
+                    <input id="weight" name="weight" type="text" class="invalid" />
+                    <label for="weight">Весовые категории</label>
+                </div>
+
+                 <div class="input-field col l4 m12 s12" style="display: none">
+                    <input id="number_table" name="number_table" type="text" class="invalid" />
+                    <label for="number_table">Количество столов</label>
+                </div>
+
+                <div class="input-field col l12 m12 s12">
+                    <input id="city" name="city" type="text" class="validate" />
+                    <label for="city">Город проведения</label>
+                </div>
+
+                <div class="input-field col l4 m6 s12">
+                    <input id="number" name="number" type="text" class="invalid" />
+                    <label for="number">Количество команд или участников</label>
+                </div>
+
+                <div class="input-field col l4 m12 s12 ">
+                    <input id="date" name="date" class="validate" type="date"/>
+                    <label for="date" class="active">Дата начала</label>
+                </div>
+
+                <div class="input-field col l4 m12 s12 ">
+                    <input id="date2" name="date2" class="validate" type="date"/>
+                    <label for="date2" class="active">Дата конца</label>
+                </div>
+
+                <div class="input-field col l6 m12 s12 ">
+                    <input id="build" name="build" class="validate" type="text"/>
+                    <label for="build">Название места проведения</label>
+                </div>
+
+                <div class="input-field col l6 m12 s12 ">
+                    <input id="address" name="address" class="validate" type="text"/>
+                    <label for="address">Адрес места проведения</label>
+                </div>
+
+                <div class="input-field col l4 m12 s12 " style="display: none">
+                    <input id="win" name="win" class="validate" type="text"/>
+                    <label for="win">Количество очков за выигрыш</label>
+                </div>
+
+                <div class="input-field col l4 m12 s12 " style="display: none">
+                    <input id="draw" name="draw" class="validate" type="text"/>
+                    <label for="draw">Количество очков за ничью</label>
+                </div>
+
+                <div class="input-field col l4 m12 s12 " style="display: none">
+                    <input id="lose" name="lose" class="validate" type="text"/>
+                    <label for="lose">Количество очков за поражение</label>
+                </div>
+
+                <div class="input-field col l12 m12 s12" >
+                    <textarea id="description" name="description" class="materialize-textarea"></textarea>
+                    <label for="description">Описание мероприятия</label>
+                </div>
+
+                <div class="input-field col offset-l5 l4 offset-m4 m4 offset-s3 s6">
+                    <button type="submit" name="submitted" class="btn waves-effect waves-light green"><i class="material-icons right">trending_flat</i>Далее</button>
+                </div>
+            </div>
+        </form>
+    <script src="../static/scripts/list.js"></script>
+    <script src="../static/scripts/Jerry.js"></script>
+    </div>
+
+{% endblock %}

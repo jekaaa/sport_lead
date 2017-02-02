@@ -1,0 +1,81 @@
+html,body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.content{
+    background: black;
+    width: 100vm;
+    height: 100vh;
+}
+.block{
+    float: left;
+    width: 25%;
+    height: 90%;
+}
+
+a:nth-child(2) .block{
+    background: url(sheluxa/ball_foot.jpg) center center;
+}
+a:nth-child(3) .block{
+    background: url(sheluxa/training.jpg) center center;
+}
+a:nth-child(4) .block{
+    background: url(sheluxa/run.jpg) center center;
+}
+a:nth-child(5) .block{
+    background: url(sheluxa/hockey.jpg) center center;
+}
+.block:hover{
+    cursor: pointer;
+}
+.name{
+    width: 80%;
+    background: rgba(20,20,20,0.7);
+    font-size: 18px;
+    margin-top: 50%;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+.header{
+    border-top: white 1px solid;
+    width: 100%;
+    height: 10%;
+    float: left;
+    color: white;
+}
+
+.header ul {
+    text-align: center;
+    width: 40%;
+}
+
+.header li {
+    display: inline-block;
+    width: 10%;
+}
+.header h1{
+    float: left;
+    padding: 10px;
+    padding-left: 30px;
+    width: 10%;
+    font-size: 20px;
+
+}
+.exit{
+    margin: 1%;
+    width: 40px;
+    height: 40px;
+    float: left;
+    background: url("sheluxa/exit.png");
+    background-size: 40px 40px;
+    border: none;
+}
+.exit:hover{
+    cursor: pointer;
+    background: url("sheluxa/exit2.png");
+    background-size: 40px 40px;
+
+}

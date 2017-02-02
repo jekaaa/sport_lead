@@ -1,0 +1,82 @@
+{% extends "defaultMenu.jinja2" %}
+{% block title2 %}Все мероприятия{% endblock %}
+{% block header2 %}
+    <li class="active"><a class="waves-effect waves-light hide-on-small-only " href="/all_tournaments">Все мероприятия</a></li>
+    <li><a class="waves-effect waves-light hide-on-small-only" href="/my_tournaments">Мои мероприятия</a></li>
+{% endblock %}
+{% block center %}
+    {% if listFavorites %}
+        {%for list in listFavorites%}
+            {% if list[3] == "" and list[4] == ""%}
+                <li class="collection-item avatar ">
+                    <a href="/tournament/{{ list[0] }}"><img src="../static/icon/{{ list[8] }}" class="circle">
+                    <span class="title black-text">{{ list[1] }}</span>
+                    <p class="black-text">{{ list[2] }}</p></a>
+                     <a class="secondary-content"><i class="material-icons green-text">star</i></a>
+                </li>
+            {% else %}
+                {% if list[3] == "" %}
+                    <li class="collection-item avatar ">
+                        <a href="/tournament/{{ list[0] }}"><img src="../static/icon/{{ list[8] }}"  class="circle">
+                        <span class="title black-text">{{ list[1] }}</span>
+                        <p class="black-text">{{ list[2] }}, {{ list[4] }}</p></a>
+                        <a class="secondary-content"><i class="material-icons green-text">star</i></a>
+                    </li>
+                {% else %}
+                    {% if list[4] == "" %}
+                       <li class="collection-item avatar">
+                           <a href="/tournament/{{ list[0] }}"><img src="../static/icon/{{ list[8] }}"  class=" circle">
+                           <span class="title black-text">{{ list[1] }}</span>
+                           <p class="black-text">{{ list[2] }}, {{ list[3] }}</p></a>
+                            <a class="secondary-content"><i class="material-icons green-text">star</i></a>
+                       </li>
+                    {% else %}
+                        <li class="collection-item avatar">
+                            <a href="/tournament/{{ list[0] }}"><img src="../static/icon/{{ list[8] }}" alt="" class="circle">
+                            <span class="title black-text">{{ list[1] }}</span>
+                            <p class="black-text">{{ list[2] }}, {{ list[3] }},{{ list[4] }}</p></a>
+                            <a class="secondary-content"><i class="material-icons green-text">star</i></a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% if listContent %}
+        {%for list in listContent%}
+            {% if list[3] == "" and list[4] == ""%}
+                <li class="collection-item avatar ">
+                    <a href="/tournament/{{ list[0] }}"><img src="../static/icon/{{ list[8] }}" class="circle">
+                    <span class="title black-text">{{ list[1] }}</span>
+                    <p class="black-text">{{ list[2] }}</p></a>
+                     <a class="secondary-content"><i class="material-icons green-text">star_border</i></a>
+                </li>
+            {% else %}
+                {% if list[3] == "" %}
+                    <li class="collection-item avatar ">
+                        <a href="/tournament/{{ list[0] }}"><img src="../static/icon/{{ list[8] }}"  class="circle">
+                        <span class="title black-text">{{ list[1] }}</span>
+                        <p class="black-text">{{ list[2] }}, {{ list[4] }}</p></a>
+                        <a class="secondary-content"><i class="material-icons green-text">star_border</i></a>
+                    </li>
+                {% else %}
+                    {% if list[4] == "" %}
+                       <li class="collection-item avatar">
+                           <a href="/tournament/{{ list[0] }}"><img src="../static/icon/{{ list[8] }}"  class=" circle">
+                           <span class="title black-text">{{ list[1] }}</span>
+                           <p class="black-text">{{ list[2] }}, {{ list[3] }}</p></a>
+                            <a class="secondary-content"><i class="material-icons green-text">star_border</i></a>
+                       </li>
+                    {% else %}
+                        <li class="collection-item avatar">
+                            <a href="/tournament/{{ list[0] }}"><img src="../static/icon/{{ list[8] }}" alt="" class="circle">
+                            <span class="title black-text">{{ list[1] }}</span>
+                            <p class="black-text">{{ list[2] }}, {{ list[3] }},{{ list[4] }}</p></a>
+                            <a class="secondary-content"><i class="material-icons green-text">star_border</i></a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

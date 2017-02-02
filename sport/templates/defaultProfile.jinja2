@@ -1,0 +1,12 @@
+{% extends "default.jinja2" %}
+{% block title%}{% block title2 %}{% endblock %}{% endblock %}
+{% block content %}
+    <div class="left">
+    {% block left %}{% endblock %}
+    </div>
+
+    <div class="center">
+    {% block center %}{% endblock %}
+    </div>
+
+{% endblock %}

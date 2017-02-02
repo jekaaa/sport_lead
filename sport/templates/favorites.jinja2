@@ -1,0 +1,40 @@
+{% extends "defaultMenu.jinja2"%}
+{% block title2 %}Избранное{% endblock %}
+{% block center %}
+     {% if message %}
+            <div class="post">
+                <p>{{ message }}</p>
+            </div>
+        {% endif %}
+        {%for list in listContent%}
+            {% if list[3] == "" and list[4] == ""%}
+                <div class="post">
+                    <div>{{ list[1] }}</div>
+                    <div>{{ list[2] }}</div>
+                    <a href="/tournament/{{ list[0] }}">Подробнее</a>
+                </div>
+            {% else %}
+                {% if list[3] == "" %}
+                    <div class="post">
+                        <div>{{ list[1] }}</div>
+                        <div>{{ list[2] }}, {{ list[4] }}</div>
+                        <a href="/tournament/{{ list[0] }}">Подробнее</a>
+                    </div>
+                {% else %}
+                    {% if list[4] == "" %}
+                        <div class="post">
+                            <div>{{ list[1] }}</div>
+                            <div>{{ list[2] }}, {{ list[3] }}</div>
+                            <a href="/tournament/{{ list[0] }}">Подробнее</a>
+                        </div>
+                    {% else %}
+                        <div class="post">
+                            <div>{{ list[1] }}</div>
+                            <div>{{ list[2] }}, {{ list[3] }}, {{ list[4] }}</div>
+                            <a href="/tournament/{{ list[0] }}">Подробнее</a>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+{% endblock %}
